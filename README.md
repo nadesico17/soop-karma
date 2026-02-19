@@ -375,6 +375,9 @@ const App = () => {
   const total = filteredByViewer.length;
   const completedCount = filteredByViewer.filter(k => k.completed).length;
   const progress = total === 0 ? 0 : Math.round((completedCount / total) * 100);
+  
+  // Define progress style object to avoid double curly braces which confuse Jekyll
+  const progressBarStyle = { width: `${progress}%` };
 
   const getViewerUrl = (viewerName) => {
     const viewer = viewers.find(v => v.name === viewerName);
@@ -612,7 +615,7 @@ const App = () => {
                 </div>
               </div>
               <div className="w-full bg-black/20 rounded-full h-4 mb-2 backdrop-blur-sm overflow-hidden">
-                <div className="bg-white h-full rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(255,255,255,0.5)]" style={{ width: `${progress}%` }}></div>
+                <div className="bg-white h-full rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(255,255,255,0.5)]" style={progressBarStyle}></div>
               </div>
               <div className="flex justify-between text-sm opacity-90 font-medium px-1">
                 <span>남은 업보: {total - completedCount}개</span>
